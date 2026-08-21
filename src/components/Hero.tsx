@@ -1,7 +1,9 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Sparkles, Truck } from 'lucide-react';
-import Oreo3D from './Oreo3D';
+import { lazy, Suspense } from 'react';
+
+const Oreo3D = lazy(() => import('./Oreo3D'));
 
 export default function Hero() {
   const [explode, setExplode] = useState(0);
@@ -66,10 +68,13 @@ export default function Hero() {
           the slider to explode the biscuit and discover what's inside.
         </p>
       </motion.div>
-
       {/* 3D canvas */}
-      <div className="relative z-0 w-full h-[420px] md:h-[500px]">
-        <Oreo3D explode={explode} />
+<div className="relative z-0 w-full h-[420px] md:h-[500px]">
+  <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-gold-300">Loading 3D...</div>}>
+    <Oreo3D explode={explode} />
+  </Suspense>
+  ...
+
 
         {/* floating callouts */}
         {callouts.map((c) => (
