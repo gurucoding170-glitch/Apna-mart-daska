@@ -67,6 +67,7 @@ export default function App() {
                   activeCategory={activeCategory}
                   onAdd={handleAdd}
                 />
+                import HomeFAQ from '@/components/HomeFAQ';
               </>
             }
           />
@@ -82,6 +83,19 @@ export default function App() {
 
           {/* FAQ Page Route */}
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/" element={
+    <>
+      <Hero />
+      <ProductGrid
+        search={search}
+        activeCategory={activeCategory}
+        onAdd={handleAdd}
+      />
+      <HomeFAQ />
+    </>
+  }
+/>
+
         </Routes>
       </main>
 

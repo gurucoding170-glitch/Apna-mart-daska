@@ -1,7 +1,7 @@
 export default function FAQ() {
   const faqs = [
     { q: "Do you deliver in all areas of Daska?", a: "Yes, we cover all main areas of Daska, Sialkot, and Sambrial." },
-    { q: "How long does delivery take?", a: "We aim to deliver within 2-4 hours of order confirmation." },
+    { q: "How long does delivery take?", a: "We aim to deliver within 2-4 hours of order confirmation within Daska." },
     { q: "Is Cash on Delivery available?", a: "Yes, we offer Cash on Delivery (COD) for all orders." },
     { q: "Are your products 100% original?", a: "Absolutely. We source directly from official distributors." }
   ];
