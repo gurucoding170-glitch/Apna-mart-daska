@@ -7,8 +7,17 @@ const Oreo3D = lazy(() => import('./Oreo3D'));
 
 export default function Hero() {
   const [explode, setExplode] = useState(0);
+  const [load3D, setLoad3D] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
+
+  // Load 3D canvas only when user starts interacting or scrolling on mobile
+  useEffect(() => {
+    // Desktop par immediate load
+    if (window.innerWidth >= 768) {
+      setLoad3D(true);
+    }
+  }, []);
 
   // scroll-driven explode
   useEffect(() => {
@@ -19,18 +28,24 @@ export default function Hero() {
       const rect = el.getBoundingClientRect();
       const scrolled = Math.min(1, Math.max(0, -rect.top / (rect.height * 0.6)));
       setExplode(scrolled);
+
+      // Mobile scroll par 3D trigger
+      if (!load3D && scrolled > 0.02) {
+        setLoad3D(true);
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [load3D]);
 
   const handleSlider = useCallback((v: number) => {
+    if (!load3D) setLoad3D(true);
     isDragging.current = true;
     setExplode(v);
     setTimeout(() => {
       isDragging.current = false;
     }, 200);
-  }, []);
+  }, [load3D]);
 
   const callouts = [
     { label: 'Rich Cocoa 70%', side: 'left', showAt: 0.3, y: '30%' },
@@ -69,11 +84,26 @@ export default function Hero() {
         </p>
       </motion.div>
 
-      {/* 3D canvas with Suspense Boundary */}
-      <div className="relative z-0 w-full h-[420px] md:h-[500px]">
-        <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-gold-300 text-sm">Loading 3D Experience...</div>}>
-          <Oreo3D explode={explode} />
-        </Suspense>
+      {/* 3D canvas with Suspense & Lazy Load Check */}
+      <div className="relative z-0 w-full h-[420px] md:h-[500px] flex items-center justify-center">
+        {load3D ? (
+          <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-gold-300 text-sm">Loading 3D Experience...</div>}>
+            <Oreo3D explode={explode} />
+          </Suspense>
+        ) : (
+          <div className="relative flex flex-col items-center justify-center cursor-pointer" onClick={() => setLoad3D(true)}>
+            <img 
+              src="/products/oreoclassic.png" 
+              alt="Oreo" 
+              className="w-48 h-48 object-contain drop-shadow-2xl"
+              width="200"
+              height="200"
+            />
+            <span className="mt-3 px-3 py-1 rounded-full bg-gold-300/10 border border-gold-300/30 text-gold-200 text-xs">
+              Tap to view 3D
+            </span>
+          </div>
+        )}
 
         {/* floating callouts */}
         {callouts.map((c) => (
