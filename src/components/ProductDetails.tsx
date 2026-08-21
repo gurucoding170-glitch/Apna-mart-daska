@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Star, ShoppingBag, ArrowLeft, Rotate3d, Check } from 'lucide-react';
 import { PRODUCTS, type Product } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
+import SEO from '@/components/SEO';
 
 interface ProductDetailsProps {
   onAdd: (p: Product) => void;
@@ -13,15 +14,13 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
   const navigate = useNavigate();
   const [added, setAdded] = useState(false);
 
-  // Safe product lookup
+  // Safe product lookup (type-safe for string/number match)
   const product = PRODUCTS.find((p) => String(p.id) === String(id));
 
-  // If product not found fallback screen
   if (!product) {
     return (
       <div className="min-h-screen text-center py-24 text-gold-50 flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold mb-4">Product Not Found</h2>
-        <p className="text-gold-100/60 mb-6">Requested product details are currently unavailable.</p>
         <button
           onClick={() => navigate('/')}
           className="px-6 py-2.5 bg-gold-300 text-cocoa-900 rounded-xl font-bold"
@@ -42,8 +41,47 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
     setTimeout(() => setAdded(false), 1200);
   };
 
+  // Google & AI Search Engines (GEO) Schema
+  const productSchema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.image,
+    "description": product.tagline,
+    "brand": {
+      "@type": "Brand",
+      "name": "Apna Daska Mart"
+    },
+    "seller": {
+      "@type": "GroceryStore",
+      "name": "Apna Daska Mart",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Daska",
+        "addressRegion": "Punjab",
+        "addressCountry": "PK"
+      }
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "PKR",
+      "price": product.price,
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-cocoa-950 text-gold-50 pt-20 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
+      {/* Dynamic SEO & Schema Insertion */}
+      <SEO
+        title={`${product.name} - Buy Online in Daska | Apna Daska Mart`}
+        description={`Order 100% original ${product.name} online in Daska for PKR ${product.price}. Fast local home delivery.`}
+        keywords={`${product.name}, buy ${product.name} online, ${product.name} price in pakistan, grocery delivery daska`}
+        image={product.image}
+        url={`/product/${product.id}`}
+        schema={productSchema}
+      />
+
       <button
         onClick={() => navigate('/')}
         className="flex items-center gap-2 mb-6 text-gold-300/80 hover:text-gold-300 transition-colors"
