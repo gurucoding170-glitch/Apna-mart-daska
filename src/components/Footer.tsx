@@ -1,5 +1,6 @@
-import { Cookie, Instagram, Facebook, Phone, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Logo from './Logo';
 
 export default function Footer() {
   return (
@@ -8,15 +9,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* brand */}
           <div>
-            <Link to="/" className="flex items-center gap-2.5 mb-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cocoa-800 to-cocoa-900 flex items-center justify-center border border-gold-300/30">
-                <Cookie className="w-5 h-5 text-gold-300" />
-              </div>
-              <h3 className="font-bold gold-gradient-text">Apna Daska Mart</h3>
+            <Link to="/" className="inline-block mb-3">
+              <Logo />
             </Link>
-            <p className="text-sm text-gold-100/40 max-w-xs">
-              Premium snacks, Oreo collections, and authentic Daska bakery
-              specialties — delivered fresh to your doorstep.
+            <p className="text-sm text-gold-100/50 max-w-xs leading-relaxed">
+              Your ultimate destination for authentic imported chocolates, rare Oreo collections, and premium international snacks — delivered directly to your doorstep.
             </p>
           </div>
 
@@ -46,10 +43,10 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-gold-100/70 mb-3">Shop</h4>
             <ul className="space-y-2 text-sm text-gold-100/40">
-              <li className="hover:text-gold-300 cursor-pointer transition-colors">Biscuits</li>
-              <li className="hover:text-gold-300 cursor-pointer transition-colors">Chocolates</li>
+              <li className="hover:text-gold-300 cursor-pointer transition-colors">Biscuits & Cookies</li>
+              <li className="hover:text-gold-300 cursor-pointer transition-colors">Imported Chocolates</li>
               <li className="hover:text-gold-300 cursor-pointer transition-colors">Beverages</li>
-              <li className="hover:text-gold-300 cursor-pointer transition-colors">Daska Specialties</li>
+              <li className="hover:text-gold-300 cursor-pointer transition-colors">Rare Snacks</li>
             </ul>
           </div>
 
@@ -58,7 +55,7 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-gold-100/70 mb-3">Contact</h4>
             <div className="space-y-2 text-sm text-gold-100/40">
               <p className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-gold-300" /> Main Bazaar, Daska
+                <MapPin className="w-4 h-4 text-gold-300" /> Main City, Daska
               </p>
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-gold-300" /> 052-6612345
@@ -76,7 +73,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-gold-300/10 text-center text-xs text-gold-100/30">
-          © 2026 Apna Daska Mart. Crafted with care in Daska, Punjab.
+          © 2026 Apna Daska Mart. All rights reserved.
         </div>
       </div>
     </footer>

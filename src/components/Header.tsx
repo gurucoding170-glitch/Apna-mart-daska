@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingCart, X, Cookie } from 'lucide-react';
+import { Search, ShoppingCart, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { CATEGORIES, type Category } from '@/data/products';
+import Logo from './Logo';
 
 interface HeaderProps {
   search: string;
@@ -27,23 +28,13 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* top row */}
         <div className="flex items-center justify-between h-16 gap-4">
-          {/* logo */}
+          {/* logo replacement */}
           <Link 
             to="/" 
             aria-label="Apna Daska Mart Home"
-            className="flex items-center gap-2.5 shrink-0 hover:opacity-90 transition-opacity"
+            className="flex items-center shrink-0 hover:opacity-90 transition-opacity"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cocoa-800 to-cocoa-900 flex items-center justify-center border border-gold-300/30 shadow-glow-gold">
-              <Cookie className="w-5 h-5 text-gold-300" />
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-base font-bold gold-gradient-text leading-tight">
-                Apna Daska Mart
-              </h1>
-              <p className="text-[10px] text-gold-100/40 leading-tight">
-                Premium Snacks & Grocery
-              </p>
-            </div>
+            <Logo />
           </Link>
 
           {/* search */}
@@ -80,6 +71,9 @@ export default function Header({
               </Link>
               <Link to="/faq" className="hover:text-gold-300 transition-colors">
                 FAQ
+              </Link>
+              <Link to="/blog" className="hover:text-gold-300 transition-colors">
+                Blog
               </Link>
             </nav>
 

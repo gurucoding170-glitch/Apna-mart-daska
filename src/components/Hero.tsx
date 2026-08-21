@@ -73,14 +73,13 @@ export default function Hero() {
       >
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-gold-300/30 text-sm text-gold-200 mb-6">
           <Sparkles className="w-4 h-4 text-gold-300" />
-          <span>Premium Snacks · Local Daska Bakery</span>
+          <span>Premium Snacks · Local Daska Mart</span>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-balance">
           <span className="gold-gradient-text">Apna Daska Mart</span>
         </h1>
         <p className="mt-4 text-lg md:text-xl text-gold-100/70 max-w-2xl mx-auto">
-          Where the humble Oreo unfolds into a world of flavour. Scroll or drag
-          the slider to explode the biscuit and discover what's inside.
+          100% Original Imported/Local & Rare Snacks
         </p>
       </motion.div>
 
