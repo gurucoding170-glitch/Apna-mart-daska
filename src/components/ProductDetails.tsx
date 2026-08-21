@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Star, ShoppingBag, ArrowLeft, Rotate3d, Check } from 'lucide-react';
 import { PRODUCTS, type Product } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
+import SEO from '@/components/SEO';
 
 interface ProductDetailsProps {
   onAdd: (p: Product) => void;
@@ -37,8 +38,55 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
     setTimeout(() => setAdded(false), 1200);
   };
 
+  // GEO Schema Data for Google & AI Engines
+  const productSchema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.image,
+    "description": product.tagline,
+    "category": product.category,
+    "brand": {
+      "@type": "Brand",
+      "name": "Apna Daska Mart"
+    },
+    "seller": {
+      "@type": "GroceryStore",
+      "name": "Apna Daska Mart",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Daska",
+        "addressRegion": "Punjab",
+        "addressCountry": "PK"
+      }
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "PKR",
+      "price": product.price,
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "areaServed": ["Daska", "Sialkot", "Sambrial", "Pasrur"]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": product.rating,
+      "reviewCount": product.reviews
+    }
+  };
+
   return (
     <div className="min-h-screen bg-cocoa-950 text-gold-50 pt-20 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
+      {/* Dynamic SEO & GEO Meta Tags */}
+      <SEO
+        title={`${product.name} - Buy Online in Daska, Pakistan | Apna Daska Mart`}
+        description={`Order 100% original ${product.name} online in Daska, Sialkot, and nearby areas for PKR ${product.price}. Instant home delivery available.`}
+        keywords={`${product.name}, buy ${product.name} online, ${product.name} price in pakistan, grocery delivery daska`}
+        image={product.image}
+        url={`/product/${product.id}`}
+        schema={productSchema}
+      />
+
       {/* Back Button */}
       <button
         onClick={() => navigate('/')}
