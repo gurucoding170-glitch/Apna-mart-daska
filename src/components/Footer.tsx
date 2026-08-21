@@ -36,6 +36,9 @@ export default function Footer() {
               <li>
                 <Link to="/contact" className="hover:text-gold-300 transition-colors">Contact Us</Link>
               </li>
+              <li>
+                <Link to="/blog" className="hover:text-gold-300 transition-colors">Blogs</Link>
+              </li>
             </ul>
           </div>
 

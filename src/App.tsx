@@ -13,6 +13,9 @@ import CheckoutModal from './components/CheckoutModal';
 import Footer from './components/Footer';
 import { useCart } from './hooks/useCart';
 import type { Category, Product } from './data/products';
+import BlogList from './components/BlogList';
+import BlogDetails from './components/BlogDetails';
+
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -87,6 +90,9 @@ export default function App() {
 
           {/* Contact Us Route */}
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogDetails />} />
+
         </Routes>
       </main>
 
