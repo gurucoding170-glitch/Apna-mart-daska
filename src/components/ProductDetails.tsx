@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Star, ShoppingBag, ArrowLeft, Rotate3d, Check } from 'lucide-react';
 import { PRODUCTS, type Product } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
-import SEO from '@/components/SEO';
 
 interface ProductDetailsProps {
   onAdd: (p: Product) => void;
@@ -14,21 +13,27 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
   const navigate = useNavigate();
   const [added, setAdded] = useState(false);
 
-  const product = PRODUCTS.find((p) => p.id === id);
+  // Safe product lookup
+  const product = PRODUCTS.find((p) => String(p.id) === String(id));
 
+  // If product not found fallback screen
   if (!product) {
     return (
-      <div className="min-h-screen text-center py-20 text-gold-50">
-        <h2>Product not found</h2>
-        <button onClick={() => navigate('/')} className="mt-4 px-4 py-2 bg-gold-300 text-black rounded-lg">
-          Back to Home
+      <div className="min-h-screen text-center py-24 text-gold-50 flex flex-col items-center justify-center">
+        <h2 className="text-2xl font-bold mb-4">Product Not Found</h2>
+        <p className="text-gold-100/60 mb-6">Requested product details are currently unavailable.</p>
+        <button
+          onClick={() => navigate('/')}
+          className="px-6 py-2.5 bg-gold-300 text-cocoa-900 rounded-xl font-bold"
+        >
+          Return to Home
         </button>
       </div>
     );
   }
 
   const recommendedProducts = PRODUCTS.filter(
-    (p) => p.category === product.category && p.id !== product.id
+    (p) => p.category === product.category && String(p.id) !== String(product.id)
   ).slice(0, 4);
 
   const handleAddToCart = () => {
@@ -37,31 +42,8 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
     setTimeout(() => setAdded(false), 1200);
   };
 
-  const productSchema = {
-    "@context": "https://schema.org/",
-    "@type": "Product",
-    "name": product.name,
-    "image": product.image,
-    "description": product.tagline,
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "PKR",
-      "price": product.price,
-      "availability": "https://schema.org/InStock"
-    }
-  };
-
   return (
     <div className="min-h-screen bg-cocoa-950 text-gold-50 pt-20 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
-      <SEO
-        title={`${product.name} - Buy Online in Daska | Apna Daska Mart`}
-        description={`Buy ${product.name} online in Daska, Sialkot. Price PKR ${product.price}.`}
-        keywords={`${product.name}, buy oreo online, oreo daska`}
-        image={product.image}
-        url={`/product/${product.id}`}
-        schema={productSchema}
-      />
-
       <button
         onClick={() => navigate('/')}
         className="flex items-center gap-2 mb-6 text-gold-300/80 hover:text-gold-300 transition-colors"
