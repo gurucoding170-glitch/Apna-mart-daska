@@ -76,6 +76,12 @@ export default function App() {
             path="/product/:id"
             element={<ProductDetails onAdd={handleAdd} />}
           />
+
+          {/* About Page Route */}
+          <Route path="/about" element={<About />} />
+
+          {/* FAQ Page Route */}
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
       </main>
 
