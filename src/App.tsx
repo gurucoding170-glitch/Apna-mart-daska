@@ -6,6 +6,7 @@ import FAQ from './FAQ';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ProductGrid from '@/components/ProductGrid';
+import HomeFAQ from '@/components/HomeFAQ';
 import CartDrawer from '@/components/CartDrawer';
 import CheckoutModal from '@/components/CheckoutModal';
 import Footer from '@/components/Footer';
@@ -67,7 +68,7 @@ export default function App() {
                   activeCategory={activeCategory}
                   onAdd={handleAdd}
                 />
-                import HomeFAQ from '@/components/HomeFAQ';
+                <HomeFAQ />
               </>
             }
           />
@@ -83,19 +84,6 @@ export default function App() {
 
           {/* FAQ Page Route */}
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/" element={
-    <>
-      <Hero />
-      <ProductGrid
-        search={search}
-        activeCategory={activeCategory}
-        onAdd={handleAdd}
-      />
-      <HomeFAQ />
-    </>
-  }
-/>
-
         </Routes>
       </main>
 
