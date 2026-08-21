@@ -27,7 +27,6 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
     );
   }
 
-  // Recommendation logic: Same category products minus current product
   const recommendedProducts = PRODUCTS.filter(
     (p) => p.category === product.category && p.id !== product.id
   ).slice(0, 4);
@@ -38,56 +37,31 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
     setTimeout(() => setAdded(false), 1200);
   };
 
-  // GEO Schema Data for Google & AI Engines
   const productSchema = {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": product.name,
     "image": product.image,
     "description": product.tagline,
-    "category": product.category,
-    "brand": {
-      "@type": "Brand",
-      "name": "Apna Daska Mart"
-    },
-    "seller": {
-      "@type": "GroceryStore",
-      "name": "Apna Daska Mart",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Daska",
-        "addressRegion": "Punjab",
-        "addressCountry": "PK"
-      }
-    },
     "offers": {
       "@type": "Offer",
       "priceCurrency": "PKR",
       "price": product.price,
-      "availability": "https://schema.org/InStock",
-      "itemCondition": "https://schema.org/NewCondition",
-      "areaServed": ["Daska", "Sialkot", "Sambrial", "Pasrur"]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": product.rating,
-      "reviewCount": product.reviews
+      "availability": "https://schema.org/InStock"
     }
   };
 
   return (
     <div className="min-h-screen bg-cocoa-950 text-gold-50 pt-20 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
-      {/* Dynamic SEO & GEO Meta Tags */}
       <SEO
-        title={`${product.name} - Buy Online in Daska, Pakistan | Apna Daska Mart`}
-        description={`Order 100% original ${product.name} online in Daska, Sialkot, and nearby areas for PKR ${product.price}. Instant home delivery available.`}
-        keywords={`${product.name}, buy ${product.name} online, ${product.name} price in pakistan, grocery delivery daska`}
+        title={`${product.name} - Buy Online in Daska | Apna Daska Mart`}
+        description={`Buy ${product.name} online in Daska, Sialkot. Price PKR ${product.price}.`}
+        keywords={`${product.name}, buy oreo online, oreo daska`}
         image={product.image}
         url={`/product/${product.id}`}
         schema={productSchema}
       />
 
-      {/* Back Button */}
       <button
         onClick={() => navigate('/')}
         className="flex items-center gap-2 mb-6 text-gold-300/80 hover:text-gold-300 transition-colors"
@@ -95,10 +69,7 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
         <ArrowLeft className="w-4 h-4" /> Back to Store
       </button>
 
-      {/* Main Grid: Top 3D View & Specs */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        
-        {/* 1. Interactive 3D Model Viewer Container */}
         <div className="relative h-[380px] md:h-[450px] w-full bg-black/50 border border-gold-300/20 rounded-3xl overflow-hidden flex items-center justify-center">
           {product.sketchfabId ? (
             <iframe
@@ -120,7 +91,6 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
           )}
         </div>
 
-        {/* 2. Product Information & Actions */}
         <div className="flex flex-col justify-center">
           <span className="text-xs uppercase font-bold tracking-widest text-gold-300 mb-2">
             {product.category}
@@ -165,7 +135,6 @@ export default function ProductDetails({ onAdd }: ProductDetailsProps) {
         </div>
       </div>
 
-      {/* 3. Recommended Products Section */}
       {recommendedProducts.length > 0 && (
         <section className="pt-10 border-t border-gold-300/10">
           <h3 className="text-2xl font-bold gold-gradient-text mb-6">Recommended for You</h3>
