@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import ProductDetails from '@/components/ProductDetails';
 import About from './About';
 import FAQ from './FAQ';
+import Contact from '@/components/Contact';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ProductGrid from '@/components/ProductGrid';
@@ -13,7 +14,6 @@ import Footer from '@/components/Footer';
 import { useCart } from '@/hooks/useCart';
 import type { Category, Product } from '@/data/products';
 
-// Scroll to top automatically whenever the route changes
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -73,7 +73,7 @@ export default function App() {
             }
           />
 
-          {/* Dedicated 3D Product Details Page */}
+          {/* Dedicated Product Details Page */}
           <Route
             path="/product/:id"
             element={<ProductDetails onAdd={handleAdd} />}
@@ -84,6 +84,9 @@ export default function App() {
 
           {/* FAQ Page Route */}
           <Route path="/faq" element={<FAQ />} />
+
+          {/* Contact Us Route */}
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
 
