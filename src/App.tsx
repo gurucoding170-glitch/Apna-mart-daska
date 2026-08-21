@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import ProductDetails from '@/components/ProductDetails';
+import ProductDetails from './components/ProductDetails';
 import About from './About';
 import FAQ from './FAQ';
-import Contact from '@/components/Contact';
-import Header from '@/components/Header';
-import Hero from '@/components/Hero';
-import ProductGrid from '@/components/ProductGrid';
-import HomeFAQ from '@/components/HomeFAQ';
-import CartDrawer from '@/components/CartDrawer';
-import CheckoutModal from '@/components/CheckoutModal';
-import Footer from '@/components/Footer';
-import { useCart } from '@/hooks/useCart';
-import type { Category, Product } from '@/data/products';
+import Contact from './components/Contact';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import ProductGrid from './components/ProductGrid';
+import HomeFAQ from './components/HomeFAQ';
+import CartDrawer from './components/CartDrawer';
+import CheckoutModal from './components/CheckoutModal';
+import Footer from './components/Footer';
+import { useCart } from './hooks/useCart';
+import type { Category, Product } from './data/products';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
