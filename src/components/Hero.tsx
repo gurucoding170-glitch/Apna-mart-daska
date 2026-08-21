@@ -1,8 +1,8 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Sparkles, Truck } from 'lucide-react';
-import { lazy, Suspense } from 'react';
 
+// Dynamic Import for 3D Canvas
 const Oreo3D = lazy(() => import('./Oreo3D'));
 
 export default function Hero() {
@@ -68,13 +68,12 @@ export default function Hero() {
           the slider to explode the biscuit and discover what's inside.
         </p>
       </motion.div>
-      {/* 3D canvas */}
-<div className="relative z-0 w-full h-[420px] md:h-[500px]">
-  <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-gold-300">Loading 3D...</div>}>
-    <Oreo3D explode={explode} />
-  </Suspense>
-  ...
 
+      {/* 3D canvas with Suspense Boundary */}
+      <div className="relative z-0 w-full h-[420px] md:h-[500px]">
+        <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-gold-300 text-sm">Loading 3D Experience...</div>}>
+          <Oreo3D explode={explode} />
+        </Suspense>
 
         {/* floating callouts */}
         {callouts.map((c) => (
