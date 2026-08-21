@@ -1,25 +1,42 @@
 import { Cookie, Instagram, Facebook, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
     <footer className="border-t border-gold-300/10 bg-cocoa-900/30">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* brand */}
-          <div>
-            <div className="flex items-center gap-2.5 mb-3">
+          <div className="md:col-span-1">
+            <Link to="/" className="flex items-center gap-2.5 mb-3">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cocoa-800 to-cocoa-900 flex items-center justify-center border border-gold-300/30">
                 <Cookie className="w-5 h-5 text-gold-300" />
               </div>
               <h3 className="font-bold gold-gradient-text">Apna Daska Mart</h3>
-            </div>
+            </Link>
             <p className="text-sm text-gold-100/40 max-w-xs">
               Premium snacks, Oreo collections, and authentic Daska bakery
               specialties — delivered fresh to your doorstep.
             </p>
           </div>
 
-          {/* quick links */}
+          {/* quick links / pages */}
+          <div>
+            <h4 className="text-sm font-semibold text-gold-100/70 mb-3">Information</h4>
+            <ul className="space-y-2 text-sm text-gold-100/40">
+              <li>
+                <Link to="/" className="hover:text-gold-300 transition-colors">Home</Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-gold-300 transition-colors">About Us</Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-gold-300 transition-colors">Help & FAQ</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* categories */}
           <div>
             <h4 className="text-sm font-semibold text-gold-100/70 mb-3">Shop</h4>
             <ul className="space-y-2 text-sm text-gold-100/40">

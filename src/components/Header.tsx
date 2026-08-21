@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingCart, Menu, X, Cookie } from 'lucide-react';
+import { Search, ShoppingCart, X, Cookie } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { CATEGORIES, type Category } from '@/data/products';
 
 interface HeaderProps {
@@ -27,7 +28,7 @@ export default function Header({
         {/* top row */}
         <div className="flex items-center justify-between h-16 gap-4">
           {/* logo */}
-          <div className="flex items-center gap-2.5 shrink-0">
+          <Link to="/" className="flex items-center gap-2.5 shrink-0 hover:opacity-90 transition-opacity">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cocoa-800 to-cocoa-900 flex items-center justify-center border border-gold-300/30 shadow-glow-gold">
               <Cookie className="w-5 h-5 text-gold-300" />
             </div>
@@ -39,7 +40,7 @@ export default function Header({
                 Premium Snacks & Grocery
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* search */}
           <div className="flex-1 max-w-md relative">
@@ -66,27 +67,38 @@ export default function Header({
             </AnimatePresence>
           </div>
 
-          {/* cart button */}
-          <button
-            onClick={onCartClick}
-            className="relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-gold-300 to-gold-400 text-cocoa-900 font-semibold text-sm hover:shadow-glow-gold transition-all shrink-0"
-          >
-            <ShoppingCart className="w-4 h-4" />
-            <span className="hidden sm:inline">Cart</span>
-            <AnimatePresence>
-              {cartCount > 0 && (
-                <motion.span
-                  key={cartCount}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
-                  className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-oreo-400 text-white text-[10px] font-bold flex items-center justify-center"
-                >
-                  {cartCount}
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
+          {/* nav pages & cart button */}
+          <div className="flex items-center gap-3 shrink-0">
+            <nav className="hidden md:flex items-center gap-4 text-xs font-semibold text-gold-100/70">
+              <Link to="/about" className="hover:text-gold-300 transition-colors">
+                About
+              </Link>
+              <Link to="/faq" className="hover:text-gold-300 transition-colors">
+                FAQ
+              </Link>
+            </nav>
+
+            <button
+              onClick={onCartClick}
+              className="relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-gold-300 to-gold-400 text-cocoa-900 font-semibold text-sm hover:shadow-glow-gold transition-all"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              <span className="hidden sm:inline">Cart</span>
+              <AnimatePresence>
+                {cartCount > 0 && (
+                  <motion.span
+                    key={cartCount}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-oreo-400 text-white text-[10px] font-bold flex items-center justify-center"
+                  >
+                    {cartCount}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
         </div>
 
         {/* category pills */}
