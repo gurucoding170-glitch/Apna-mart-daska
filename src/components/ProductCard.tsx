@@ -34,6 +34,10 @@ export default function ProductCard({ product, onAdd, index }: ProductCardProps)
         <motion.img
           src={product.image}
           alt={product.name}
+          loading="lazy"
+          decoding="async"
+          width="266"
+          height="266"
           className="h-full w-auto object-contain drop-shadow-xl z-10"
           whileHover={{ scale: 1.1, rotate: 3 }}
           transition={{ type: 'spring', stiffness: 300 }}
@@ -60,6 +64,7 @@ export default function ProductCard({ product, onAdd, index }: ProductCardProps)
           <span className="text-lg font-bold gold-gradient-text">PKR {product.price}</span>
           <button
             onClick={handleAdd}
+            aria-label={`Add ${product.name} to cart`}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all ${
               added ? 'bg-success/20 text-success border border-success/40' : 'bg-gold-300 text-cocoa-900 hover:shadow-glow-gold'
             }`}

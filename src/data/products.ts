@@ -47,7 +47,7 @@ export const PRODUCTS: Product[] = [
     price: 420,
     rating: 4.8,
     reviews: 892,
-    image: '/products/oreochoco.png',
+    image: '/products/oreochoco.webp',
     sketchfabId: '077ca586c28d41628d2eb637f6fa443c', // 👈 Model ID
     tagline: '70% rich cocoa shells, intense flavour',
     badge: 'New',

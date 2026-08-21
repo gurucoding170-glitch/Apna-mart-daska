@@ -28,7 +28,11 @@ export default function Header({
         {/* top row */}
         <div className="flex items-center justify-between h-16 gap-4">
           {/* logo */}
-          <Link to="/" className="flex items-center gap-2.5 shrink-0 hover:opacity-90 transition-opacity">
+          <Link 
+            to="/" 
+            aria-label="Apna Daska Mart Home"
+            className="flex items-center gap-2.5 shrink-0 hover:opacity-90 transition-opacity"
+          >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cocoa-800 to-cocoa-900 flex items-center justify-center border border-gold-300/30 shadow-glow-gold">
               <Cookie className="w-5 h-5 text-gold-300" />
             </div>
@@ -59,6 +63,7 @@ export default function Header({
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   onClick={() => onSearch('')}
+                  aria-label="Clear search input"
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gold-100/40 hover:text-gold-300"
                 >
                   <X className="w-4 h-4" />
@@ -80,6 +85,7 @@ export default function Header({
 
             <button
               onClick={onCartClick}
+              aria-label="Shopping Cart"
               className="relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-gold-300 to-gold-400 text-cocoa-900 font-semibold text-sm hover:shadow-glow-gold transition-all"
             >
               <ShoppingCart className="w-4 h-4" />
@@ -107,6 +113,7 @@ export default function Header({
             <button
               key={pill}
               onClick={() => onCategory(pill)}
+              aria-label={`Filter by ${pill} category`}
               className={`px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
                 activeCategory === pill
                   ? 'bg-gold-300 text-cocoa-900 shadow-glow-gold'

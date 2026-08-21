@@ -81,7 +81,7 @@ export default function Hero() {
               x: explode > c.showAt ? 0 : c.side === 'left' ? -30 : 30,
             }}
             transition={{ duration: 0.4 }}
-            className={`absolute top-[${c.y}] ${c.side === 'left' ? 'left-4 md:left-16' : 'right-4 md:right-16'} pointer-events-none`}
+            className={`absolute ${c.side === 'left' ? 'left-4 md:left-16' : 'right-4 md:right-16'} pointer-events-none`}
             style={{ top: c.y }}
           >
             <div className="flex items-center gap-2 px-3 py-2 rounded-xl glass border border-gold-300/30 shadow-glow-gold">
@@ -106,6 +106,7 @@ export default function Hero() {
           max={1}
           step={0.01}
           value={explode}
+          aria-label="Interactive Oreo Explosion Slider"
           onChange={(e) => handleSlider(parseFloat(e.target.value))}
           className="w-full h-2 rounded-full appearance-none cursor-pointer bg-cocoa-700 accent-gold-300"
           style={{
