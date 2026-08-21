@@ -55,10 +55,10 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-gold-100/70 mb-3">Contact</h4>
             <div className="space-y-2 text-sm text-gold-100/40">
               <p className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-gold-300" /> Main City, Daska
+                <MapPin className="w-4 h-4 text-gold-300" /> Sialkot Road, Daska
               </p>
               <p className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-gold-300" /> 052-6612345
+                <Phone className="w-4 h-4 text-gold-300" /> 0305-6241497
               </p>
               <div className="flex gap-3 pt-2">
                 <span className="w-9 h-9 rounded-lg bg-cocoa-800 flex items-center justify-center hover:bg-cocoa-700 cursor-pointer transition-colors">
