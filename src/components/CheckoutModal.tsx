@@ -27,9 +27,40 @@ export default function CheckoutModal({ open, onClose, cart }: CheckoutModalProp
     e.preventDefault();
     if (!canSubmit) return;
     setStatus('loading');
+
+    // 1. WhatsApp Number (Change to your actual store WhatsApp number)
+    const storeWhatsAppNumber = '923056241497'; 
+
+    // 2. Format Items List
+    const itemsText = items
+      .map((item) => `• ${item.product.title} (x${item.quantity}) - PKR ${item.product.price * item.quantity}`)
+      .join('\n');
+
+    // 3. Format Message
+    const message = 
+`🛒 *NEW ORDER - APNA DASKA MART* 🛒
+
+👤 *Customer:* ${name.trim()}
+📞 *Phone:* ${phone.trim()}
+📍 *Area:* ${area}
+🏠 *Address:* ${address.trim()}
+
+--- *ORDER DETAILS* ---
+${itemsText}
+
+🚚 *Delivery:* ${deliveryFee === 0 ? 'FREE' : `PKR ${deliveryFee}`}
+💰 *Total Amount:* PKR ${total}
+
+_Payment Mode: Cash on Delivery_`;
+
+    // 4. Open WhatsApp
+    const whatsappUrl = `https://wa.me/${storeWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+
+    // 5. Show Success Screen
     setTimeout(() => {
       setStatus('success');
-    }, 1500);
+    }, 1000);
   };
 
   const handleClose = () => {
@@ -77,10 +108,10 @@ export default function CheckoutModal({ open, onClose, cart }: CheckoutModalProp
                     Order Confirmed!
                   </h3>
                   <p className="text-gold-100/60 text-sm mb-1">
-                    Thank you, {name}! Your order is being prepared.
+                    Thank you, {name}! Your order details have been sent to WhatsApp.
                   </p>
                   <p className="text-gold-100/40 text-sm mb-6">
-                    We'll call {phone} to confirm delivery to {area}.
+                    We'll contact you on {phone} to confirm delivery to {area}.
                   </p>
                   <button
                     onClick={handleClose}
@@ -119,7 +150,7 @@ export default function CheckoutModal({ open, onClose, cart }: CheckoutModalProp
                           className="flex justify-between text-sm text-gold-100/70"
                         >
                           <span>
-                            {item.product.emoji} {item.product.name} × {item.quantity}
+                            {item.product.title} × {item.quantity}
                           </span>
                           <span>PKR {item.product.price * item.quantity}</span>
                         </div>
@@ -207,7 +238,7 @@ export default function CheckoutModal({ open, onClose, cart }: CheckoutModalProp
                       {status === 'loading' ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
-                          Placing Order...
+                          Processing Order...
                         </>
                       ) : (
                         <>Place Order · PKR {total}</>

@@ -1,4 +1,5 @@
-export type Category = 'Biscuits' | 'Chocolates' | 'Beverages' | 'Daska Specialties';
+export type Category = 
+  | 'Biscuits' | 'Chocolates'  | 'Beverages'  | 'Snacks'  | 'Health and beauty'  | 'Vitamins'  | 'Candies'  | 'Mobile Accessories'  | 'Imported Snacks'  | 'Daily Essentials'  | 'Baby and Baba'  | 'Laundary'  | 'Kitchen'  | 'R.S 400'  | 'Daska Specialties';
 
 export interface Product {
   id: string;
@@ -23,6 +24,17 @@ export const CATEGORIES: Category[] = [
   'Biscuits',
   'Chocolates',
   'Beverages',
+  'Snacks',
+  'Health and beauty',
+  'Vitamins',
+  'Candies',
+  'Mobile Accessories',
+  'Imported Snacks',
+  'Daily Essentials',
+  'Baby and Baba',
+  'Laundary',
+  'Kitchen',
+  'R.S 400',
   'Daska Specialties',
 ];
 
@@ -60,6 +72,7 @@ export const DELIVERY_AREAS = [
   'Sialkot',
   'Sambrial',
   'Pasrur',
+  'Others',
 ] as const;
 
 export const INGREDIENT_CALLOUTS = [
